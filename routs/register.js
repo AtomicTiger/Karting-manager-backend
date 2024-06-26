@@ -16,13 +16,14 @@ app.post("/register", async (req,res)=>{
         }
 
         const existingUser = await User.findOne({ Login: login }).exec();
+        
         if (existingUser) {
             return res.status(409).json({ message: 'User already exists.' });
         }
         const salt = await bcrypt.genSalt(saltRounds);
         const hash = await bcrypt.hash(password, salt);
 
-        const newUser = await User.create({ login, Pass: hash });
+        const newUser = await User.create({ Login: login, Pass: hash });
 
         res.status(201).json({ message: 'User registered successfully.', userId: newUser._id});
     } catch (error) {

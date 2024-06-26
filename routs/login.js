@@ -9,7 +9,7 @@ const User = mongoose.model('User', UserSchema);
 // Middleware to parse JSON bodies
 app.use(express.json());
 
-app.get("/login", async (req, res) => {
+app.post("/login", async (req, res) => {
     try {
         const { login, password } = req.body;
 
@@ -19,14 +19,14 @@ app.get("/login", async (req, res) => {
 
         const existingUser = await User.findOne({ Login: login }).exec();
         if (!existingUser) {
-            return res.status(300).json({ message: 'Wrong password or login. Try again' });
+            return res.status(400).json({ message: 'Wrong password or login. Try again' });
         }
 
         const PassCheck = await bcrypt.compare(password, existingUser.Pass);
         if (PassCheck) {
             return res.status(201).json({ userId: existingUser._id, login: existingUser.Login, message: 'User logged in successfully.' });
         } else {
-            return res.status(300).json({ message: 'Wrong password or login. Try again' });
+            return res.status(400).json({ message: 'Wrong password or login. Try again' });
         }
     } catch (error) {
         console.error('Error during user login:', error);
