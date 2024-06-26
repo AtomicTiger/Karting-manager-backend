@@ -4,7 +4,7 @@ const port = 9000
 require("dotenv").config({ path: "./secret/.env" });
 const dbPass = process.env.DB_PASS;
 const mongoose = require('mongoose');
-
+const cors = require('cors');
 
 const Register = require('./routs/register')
 const Login = require('./routs/login')
@@ -15,6 +15,13 @@ const GokartsInfo = require('./routs/getGokartsInfo')
 const updateGokart = require('./routs/upadteGokarts')
 const Stint = require('./routs/createStint')
 
+
+app.use(cors({
+  origin: 'http://localhost:3000', // Allow only this origin
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow only these methods
+  allowedHeaders: ['Content-Type', 'Authorization'], // Allow only these headers
+  credentials: true // Allow credentials (cookies, authorization headers, etc.)
+}));
 
 mongoose.connect(dbPass, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Database connected successfully'))
