@@ -1,0 +1,12 @@
+GET http://localhost:9000/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjdiZmZhMjRhZGVjN2MwOTc0MWNjZmMiLCJsb2dpbiI6InF3ZSIsImlhdCI6MTcxOTU2ODU0MX0.DnGK8QgFbxo8Uk4QSJfHpHU4s1nxmvu8X-9dOi3Lud0
+
+####
+
+POST http://localhost:9000/login
+Content-Type: application/login
+
+{
+    "login":"qwe",
+    "password":"qwe"
+}

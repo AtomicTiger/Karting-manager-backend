@@ -13,7 +13,8 @@ const Event = require('./routs/Event')
 const EventData = require('./routs/GetEventInfo')
 const GokartsInfo = require('./routs/getGokartsInfo')
 const updateGokart = require('./routs/upadteGokarts')
-const Stint = require('./routs/createStint')
+const Stint = require('./routs/createStint');
+const authenticateToken = require("./routs/auth");
 
 
 app.use(cors({
@@ -32,6 +33,9 @@ app.listen(port, () => {
     console.log(`App listening on port ${port}`)
 })
 
+// app.get('/users', authenticateToken ,(req,res)=>{
+//   res.json(useres.filter(users => users.id === req.user.userId))
+// })
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));

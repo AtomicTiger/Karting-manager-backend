@@ -1,3 +1,5 @@
+require("dotenv").config({path: '../secret/.env' });
+
 const express = require("express");
 const app = express();
 const mongoose = require('mongoose');
@@ -6,7 +8,9 @@ const bcrypt = require('bcrypt');
 
 const User = mongoose.model('User', UserSchema);
 
-// Middleware to parse JSON bodies
+const jwt = require('jsonwebtoken')
+const accessCode = process.env.ACCESS_TOKEN_SECRET
+
 app.use(express.json());
 
 app.post("/login", async (req, res) => {
@@ -24,7 +28,12 @@ app.post("/login", async (req, res) => {
 
         const PassCheck = await bcrypt.compare(password, existingUser.Pass);
         if (PassCheck) {
-            return res.status(201).json({ userId: existingUser._id, login: existingUser.Login, message: 'User logged in successfully.' });
+            const user = {userId: existingUser._id, login: existingUser.Login}
+            console.log(user)
+            const accessToken = jwt.sign(user, accessCode)
+            console.log(accessToken)
+            return res.status(201).json({accessToken: accessToken, message: 'User logged in successfully.' });
+            
         } else {
             return res.status(400).json({ message: 'Wrong password or login. Try again' });
         }
