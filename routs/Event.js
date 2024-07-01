@@ -15,8 +15,7 @@ app.post("/eventCreation", async (req,res)=>{
         }
 
 
-        const NewEvenet = await Event.create({ Name: name,userId: userId, Driver1: driver1, Driver2: driver2, Driver3: driver3, Driver4: driver4, Driver5: driver5, Date: date });
-        console.log(NewEvenet._id)
+        const NewEvenet = await Event.create({ Name: name, UserID: userId, Driver1: driver1, Driver2: driver2, Driver3: driver3, Driver4: driver4, Driver5: driver5, Date: date });
         res.status(201).json({event_id: NewEvenet._id, message: 'Event creted successfully.'});
     } catch (error) {
         console.error('Error during creating event:', error);

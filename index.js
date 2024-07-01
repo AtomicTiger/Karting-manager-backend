@@ -15,7 +15,7 @@ const EventData = require('./routs/GetEventInfo')
 const GokartsInfo = require('./routs/getGokartsInfo')
 const updateGokart = require('./routs/upadteGokarts')
 const Stint = require('./routs/createStint');
-const authenticateToken = require("./routs/auth");
+const Events = require("./routs/getEvents");
 
 
 app.use(cors({
@@ -56,3 +56,5 @@ app.use(GokartsInfo);
 app.use(updateGokart);
 
 app.use(Stint);
+
+app.use(Events);
