@@ -1,4 +1,4 @@
-require("dotenv").config({path: '../secret/.env' });
+require("dotenv").config({path: '../.env' });
 
 const express = require("express");
 const app = express();
@@ -10,6 +10,7 @@ const User = mongoose.model('User', UserSchema);
 
 const jwt = require('jsonwebtoken')
 const accessCode = process.env.ACCESS_TOKEN_SECRET
+import jwtDecode from 'jwt-decode';
 
 app.use(express.json());
 

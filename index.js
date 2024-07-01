@@ -1,8 +1,9 @@
 const express = require("express")
 const app = express()
 const port = 9000
-require("dotenv").config({ path: "./secret/.env" });
+require("dotenv").config({ path: ".env" });
 const dbPass = process.env.DB_PASS;
+console.log(process.env.DB_PASS)
 const mongoose = require('mongoose');
 const cors = require('cors');
 
