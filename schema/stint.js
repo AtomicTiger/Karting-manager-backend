@@ -6,8 +6,10 @@ const StintSchema = new Schema({
     Driver: String,
     GokartID: { type: mongoose.Schema.Types.ObjectId },
     BestLap: String,
-    Duration: String,
-    Pit: Number
+    Pit: {
+        type: Number,
+        default: 1 
+    }
 });
 
 

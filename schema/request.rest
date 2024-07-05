@@ -10,3 +10,13 @@ Content-Type: application/login
     "login":"qwe",
     "password":"qwe"
 }
+
+####
+
+POST http://localhost:9000/stint/668290b84eedabc8e1d08c3e
+
+{
+    "gokart": "1",
+    "driver": "qwe",
+    "fastestLap": "21321"
+}

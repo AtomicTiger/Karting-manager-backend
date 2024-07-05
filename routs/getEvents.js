@@ -19,7 +19,7 @@ app.get("/events/:userID", async (req,res)=>{
 
         if(!eventData){
             return res.status(400).json({message: "Events not found"})
-        }
+        }   
 
         res.status(201).json({ message: 'Found event.', Events: eventData});
     } catch (error) {

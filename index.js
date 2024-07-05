@@ -3,7 +3,6 @@ const app = express()
 const port = 9000
 require("dotenv").config({ path: ".env" });
 const dbPass = process.env.DB_PASS;
-console.log(process.env.DB_PASS)
 const mongoose = require('mongoose');
 const cors = require('cors');
 
@@ -19,10 +18,10 @@ const Events = require("./routs/getEvents");
 
 
 app.use(cors({
-  origin: 'http://localhost:3000', // Allow only this origin
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow only these methods
-  allowedHeaders: ['Content-Type', 'Authorization'], // Allow only these headers
-  credentials: true // Allow credentials (cookies, authorization headers, etc.)
+  origin: ['http://localhost:3000', 'http://localhost:9000'], // Allow multiple origins
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific HTTP methods
+  allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
+  credentials: true // Allow credentials
 }));
 
 mongoose.connect(dbPass, { useNewUrlParser: true, useUnifiedTopology: true })
