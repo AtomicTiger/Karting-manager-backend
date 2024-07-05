@@ -10,8 +10,8 @@ app.post("/eventCreation", async (req,res)=>{
     try {
         const { name,userId, driver1, driver2, driver3, driver4, driver5, date } = req.body;
 
-        if (!name || !driver1 || !driver2) {
-            return res.status(400).json({ message: 'Name and at least 2 drivers are required' });
+        if (!name || !driver1 || !driver2 || date ) {
+            return res.status(400).json({ message: 'Name, date and at least 2 drivers are required' });
         }
 
 

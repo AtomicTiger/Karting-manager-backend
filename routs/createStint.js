@@ -8,8 +8,6 @@ const Gokart = mongoose.model('Gokarts', GokartSchema);
 const Stint = mongoose.model('Stints', StintSchema);
 
 app.post("/stint/:EventID", async (req,res)=>{
-    console.log(req.body)
-    console.log(req.params)
     try {
         const EventID = req.params.EventID; 
         const {gokart, driver, fastestLap} = req.body;
@@ -22,12 +20,12 @@ app.post("/stint/:EventID", async (req,res)=>{
             nextPit = 1;
         }
         if (!gokart || !driver || !fastestLap ) {
-            return res.status(400).json({ message: 'All data are required' });
+            return res.status(300).json({ message: 'All data are required' });
         }
 
         const gokartData = await Gokart.findOne({EventID: EventID, Number: gokart}).exec();
         if(!gokartData){
-            return res.status(400).json({message: "Gokart don't exist"})
+            return res.status(300).json({message: "Gokart don't exist"})
         }
         await Stint.create({EventID: EventID, Driver: driver, GokartID: gokartData._id, BestLap: fastestLap, Pit: parseInt(nextPit)})
         res.status(201).json({ message: 'Stint creted successfully.'});
