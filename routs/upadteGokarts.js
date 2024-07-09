@@ -14,10 +14,12 @@ app.post("/gokartUpdate/:GokartID", async (req,res)=>{
             return res.status(400).json({ message: 'gokartID is missing' });
         }
 
-        await Gokart.updateOne({_id : GokartID}, {Number: Number, Status: Status, FastestLap: FastestLap}).exec()
+        const result = await Gokart.updateOne(
+            { _id: GokartID },
+            { $set: { Number: Number, Status: Status, FastestLap: FastestLap } }
+        ).exec();
         
-
-        res.status(201).json({ message: 'Updated gokart.'});
+        res.status(201).json({ message: 'Updated gokart.', result: result });
     } catch (error) {
         console.error('Error during updating gokart:', error);
         res.status(500).json({ message: 'Internal server error.' });

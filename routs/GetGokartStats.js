@@ -16,7 +16,6 @@ app.get("/GetGokartSpecifiedInfo/:gokart_ID", async (req,res)=>{
 
 
         const gokartsData = await Gokart.findById(gokart_ID).exec();
-        console.log(gokartsData)
         res.status(201).json({ message: 'Found gokarts.', GokartsData: gokartsData});
     } catch (error) {
         console.error('Error during searching for gokarts:', error);

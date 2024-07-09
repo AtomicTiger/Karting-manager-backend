@@ -29,9 +29,7 @@ app.post("/login", async (req, res) => {
         const PassCheck = await bcrypt.compare(password, existingUser.Pass);
         if (PassCheck) {
             const user = {userId: existingUser._id, login: existingUser.Login}
-            console.log(user)
             const accessToken = jwt.sign(user, accessCode)
-            console.log(accessToken)
             return res.status(201).json({accessToken: accessToken, message: 'User logged in successfully.' });
             
         } else {
