@@ -18,6 +18,7 @@ const Events = require("./routs/getEvents");
 const EventDel = require("./routs/DeleteEvent")
 const StintsInfo = require("./routs/GetStints")
 const getGokartsInfo = require("./routs/GetGokartStats")
+const FastestLapUpdate = require("./routs/updateBestLap")
 
 app.use(cors({
   origin: ['http://localhost:3000', 'http://localhost:9000'], // Allow multiple origins
@@ -65,3 +66,5 @@ app.use(EventDel);
 app.use(StintsInfo);
 
 app.use(getGokartsInfo);
+
+app.use(FastestLapUpdate);
